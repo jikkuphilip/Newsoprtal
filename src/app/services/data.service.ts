@@ -7,9 +7,13 @@ import { Injectable } from '@angular/core';
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  getArticles() {
+  getArticles(data?) {
     let params = new HttpParams();
     params = params.append('api-key', 'uR1j3A82i48Cvvn6A4pQRWBCIhUCIvG7');
+    if (data) {
+      params = params.append('page', data.page)
+      params = params.append('limit',data.limit)
+    }
     return this.http.get(
       'https://api.nytimes.com/svc/news/v3/content/all/all.json',
       { params }

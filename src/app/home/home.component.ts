@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit {
   articles: any = [];
   filteredArticles: any = [];
   sections: any = [];
+  offset:number = 0;
+  limit:number = 12;
+  selectedSection:any
   toggle: boolean = true;
   constructor(
     private dataStv: DataService,
@@ -20,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiloader.start();
-    this.dataStv.getArticles().subscribe((resp: any) => {
+    this.dataStv.getArticles({page:0,limit:12}).subscribe((resp: any) => {
       this.articles = resp.results;
       this.filteredArticles = this.articles;
       this.uiloader.stop();
@@ -31,9 +34,22 @@ export class HomeComponent implements OnInit {
   }
 
   filterArticles(section) {
-    console.log('sec', section);
-    this.filteredArticles = _.filter(this.articles, ['section', section]);
-    console.log('filtered', this.filteredArticles);
+    this.selectedSection = section
+    this.dataStv.getArticles({page:0, limit:20}).subscribe((resp:any) => {
+      this.articles = resp.results
+      this.filteredArticles = _.filter(this.articles, ['section', section]);
+    })
+  }
+
+  paginate(direction) {
+    if(direction === 'next') this.offset = this.offset + 1
+    else this.offset = this.offset - 1
+    this.dataStv.getArticles({page:this.offset,limit:this.limit}).subscribe((resp:any) => {
+      this.articles = resp.results
+     if (this.selectedSection) this.filteredArticles = _.filter(this.articles, ['section', this.selectedSection])
+     else this.filteredArticles = this.articles
+    })
+
   }
 
   gotourl(url) {
