@@ -1,0 +1,24 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/mobile-login-concept-illustration_114360-135.jpg" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="Loginform"> 
+        <input type="text" id="login" class="fadeIn second" name="email" formControlName="email" placeholder="Email">
+        <input type="text" id="password" formControlName="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="button" class="fadeIn fourth" (click)="login()" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+          Doesn't have an account?
+        <a class="underlineHover" routerLink="/auth/register">Register Now</a>
+      </div>
+  
+    </div>
+  </div>

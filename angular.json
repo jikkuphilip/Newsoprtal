@@ -28,9 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/jquery/dist/jquery.js","node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Newsportal"
+    }
+  },
+  "defaultProject": "Newsportal",
+  "cli": {
+    "analytics": "2bef2b22-2ae4-4e39-a278-5c25ba80c5d0"
+  }
 }

@@ -1,0 +1,31 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/mobile-login-concept-illustration_114360-135.jpg" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="RegistrationForm">
+        <input type="text" id="username" class="fadeIn first" formControlName="username" name="username" placeholder="Username">
+        <p class="text-danger" *ngIf="submitted && RegistrationForm.get('username').errors?.required">Username is required</p>
+        <input type="text" id="email" class="fadeIn second" name="email" formControlName="email" placeholder="Email" (ngModelChange)="checkexisting()">
+        <p class="text-danger" *ngIf="submitted && RegistrationForm.get('email').errors?.required">Email is required</p>
+        <p class="text-danger" *ngIf="submitted && RegistrationForm.get('email').errors?.email">Invalid email</p>
+        <p class="text-danger" *ngIf="isExisting">Email already existing</p>
+        <input type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Password">
+        <p class="text-danger" *ngIf="submitted && RegistrationForm.get('password').errors?.required">Password is required</p>
+        <p class="text-danger" *ngIf="submitted && RegistrationForm.get('password').errors?.maxlength">Password shouldn't be  too long</p>
+        <input type="button" class="fadeIn fourth" value="Register" (click)="registerUser()">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+          Already have an account?
+        <a class="underlineHover" routerLink="/auth/login">Login here</a>
+      </div>
+  
+    </div>
+  </div>
