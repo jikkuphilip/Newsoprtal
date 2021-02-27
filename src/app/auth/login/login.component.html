@@ -10,7 +10,10 @@
       <!-- Login Form -->
       <form [formGroup]="Loginform"> 
         <input type="text" id="login" class="fadeIn second" name="email" formControlName="email" placeholder="Email">
+        <p class="text-danger" *ngIf="submitted && Loginform.get('email').errors?.required">Email is required</p>
+        <p class="text-danger" *ngIf="submitted && Loginform.get('email').errors?.email">Invalid email</p>
         <input type="text" id="password" formControlName="password" class="fadeIn third" name="password" placeholder="Password">
+        <p class="text-danger" *ngIf="submitted && Loginform.get('password').errors?.required">Password is required</p>
         <input type="button" class="fadeIn fourth" (click)="login()" value="Log In">
       </form>
   
